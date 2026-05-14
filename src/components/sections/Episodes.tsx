@@ -1,4 +1,11 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mic, Clock, Folder, Play } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const EPISODES = [
   {
@@ -9,7 +16,7 @@ const EPISODES = [
     category: "Histoire",
     desc: "Alexia rayonne sur tous les écrans.\nMais derrière les chiffres et les stratégies se cache une femme qui a dû s'arrêter pour s'écouter.Et qui en parle ici , sans filtre , pour la première fois.",
     img: "/assets/episode-alexia.jpg",
-    link: "https://youtu.be/YrQP4O-oUAQ?si=Hd1nA7F2I2pjx7xh"
+    link: "https://youtu.be/YrQP4O-oUAQ?si=Hd1nA7F2I2pjx7xh",
   },
   {
     n: "02",
@@ -19,7 +26,7 @@ const EPISODES = [
     category: "Histoire",
     desc: "Dans cet épisode du podcast À Cœurs Ouverts🎙️♥️, j'accueille Frédéric William King pour une conversation simple, sincère et profonde autour du parcours, de la voix et des vérités.Dans cet épisode, Frédéric William King, voix engagée sur LinkedIn",
     img: "/assets/episode-frederic.jpg",
-    link: "https://youtu.be/TjkRcXYadzQ?si=4vQRFiplw6riJvtg"
+    link: "https://youtu.be/TjkRcXYadzQ?si=4vQRFiplw6riJvtg",
   },
   {
     n: "08",
@@ -29,7 +36,7 @@ const EPISODES = [
     category: "Histoire",
     desc: "Katia a grandi dans l'anxiété.\nUn jour, elle ne voulait plus être ici.\nAujourd'hui, elle aide des jeunes à ne pas sombrer.\nDans cet épisode, elle raconte comment elle a transformé sa douleur en mission : accompagner ceux qui vivent le harcèlement, l'isolement et les influences toxiques.",
     img: "/assets/episode-katia.jpg",
-    link: "https://youtu.be/uLZYJFpBtdM?si=sRtYoHcxPEgIfTm6"
+    link: "https://youtu.be/uLZYJFpBtdM?si=sRtYoHcxPEgIfTm6",
   },
   {
     n: "09",
@@ -39,11 +46,58 @@ const EPISODES = [
     category: "Histoire",
     desc: "On juge souvent l'écorce sans regarder les racines. Pour ce nouvel épisode d'À Cœurs Ouvert's, j'ai reçu un homme dont la stature impose le respect, mais dont la douceur impose le silence : Jean-Marc Colombero.",
     img: "/assets/episode-jean-marc.jpg",
-    link: "https://youtu.be/Tpi5e_5kQUg?si=dHLCG_MPsVfTraXS"
+    link: "https://youtu.be/Tpi5e_5kQUg?si=dHLCG_MPsVfTraXS",
   },
 ];
 
 export default function Episodes() {
+  const titleRef    = useRef<HTMLHeadingElement>(null);
+  const gridRef     = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      // Titre de section - fade up
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+
+      // Thumbnails - stagger en fade up à l'entrée
+      if (gridRef.current) {
+        const thumbs = gridRef.current.querySelectorAll(".episode-thumb");
+        gsap.fromTo(
+          thumbs,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.65,
+            ease: "power2.out",
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          }
+        );
+      }
+
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="episodes" className="bg-[#FAF8F4] px-6 lg:py-20 py-8">
       <div className="mx-auto max-w-[1200px]">
@@ -52,27 +106,35 @@ export default function Episodes() {
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0d0d0d]/50">
           Top Trending
         </p>
-        <h2 className="mt-3 max-w-2xl text-2xl font-black leading-tight tracking-tight text-[#0f0f0f] sm:text-4xl">
+        <h2
+          ref={titleRef}
+          style={{ opacity: 0 }}
+          className="mt-3 max-w-2xl text-2xl font-black leading-tight tracking-tight text-[#0f0f0f] sm:text-4xl"
+        >
           Découvrez les dernières<br />
           Tendances de{" "}
           <span className="text-[#e85d04]">ACO's</span>
         </h2>
 
         {/* Grille 2 colonnes */}
-        <div className="mt-12 grid grid-cols-1 gap-x-10 gap-y-16 lg:grid-cols-2">
+        <div
+          ref={gridRef}
+          className="mt-12 grid grid-cols-1 gap-x-10 gap-y-16 lg:grid-cols-2"
+        >
           {EPISODES.map((e) => (
             <article key={e.n} className="flex flex-col gap-4">
 
               {/* Thumbnail */}
-              <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]">
+              <div
+                className="episode-thumb relative overflow-hidden rounded-2xl bg-[#1a1a1a]"
+                style={{ opacity: 0 }}
+              >
                 <img
                   src={e.img}
                   alt={e.title}
                   className="aspect-[16/10] w-full object-cover"
                 />
-                {/* Overlay bas */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                {/* Badge épisode */}
                 <div className="absolute bottom-4 left-4 inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-[#111111]/90 py-1.5 pl-1.5 pr-4 backdrop-blur-sm">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#e85d04]">
                     <Play className="h-3 w-3 fill-white text-white" />
@@ -84,7 +146,7 @@ export default function Episodes() {
                 </div>
               </div>
 
-              {/* Titre */}
+              {/* Titre article */}
               <h3 className="text-[1.35rem] font-black leading-snug tracking-tight text-[#0f0f0f]">
                 {e.title}
               </h3>
@@ -115,8 +177,7 @@ export default function Episodes() {
                 href={e.link}
                 className="inline-flex w-fit items-center gap-1 text-sm font-semibold brand-gradient-text underline"
               >
-                Lire cette{" "}
-                Episode
+                Lire cette Episode
               </a>
 
             </article>

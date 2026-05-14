@@ -1,3 +1,11 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const offers = [
   "Une vidéo authentique publiée sur YouTube et mise en avant sur LinkedIn",
   "Un contenu qui travaille pour toi pendant des mois",
@@ -5,6 +13,74 @@ const offers = [
 ];
 
 export default function PodcastIntro() {
+  const titleRef    = useRef<HTMLHeadingElement>(null);
+  const photosRef   = useRef<HTMLDivElement>(null);
+  const platformRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      // Titre principal - fade up
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+
+      // Grille photos - révélation légère depuis le bas
+      if (photosRef.current) {
+        const photos = photosRef.current.querySelectorAll(".photo-item");
+        gsap.fromTo(
+          photos,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: photosRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Cards plateformes - stagger doux
+      if (platformRef.current) {
+        const cards = platformRef.current.querySelectorAll("a");
+        gsap.fromTo(
+          cards,
+          { opacity: 0, x: 16 },
+          {
+            opacity: 1, x: 0,
+            duration: 0.45,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: platformRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="offers" className="bg-[#FAF8F4] px-6 lg:py-20 py-8">
       <div className="mx-auto max-w-[1300px]">
@@ -12,7 +88,11 @@ export default function PodcastIntro() {
         {/* Ligne 1 : Titre à gauche, bouton à droite */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
           <div className="max-w-[780px]">
-            <h2 className="text-2xl font-black leading-tight tracking-tight text-[#0f0f0f] sm:text-3xl lg:text-4xl">
+            <h2
+              ref={titleRef}
+              style={{ opacity: 0 }}
+              className="text-2xl font-black leading-tight tracking-tight brand-gradient-text sm:text-3xl lg:text-4xl"
+            >
               À Cœurs Ouverts , le podcast qui révèle ce que les autres taisent.
             </h2>
             <p className="mt-5 max-w-[600px] text-[15px] leading-7 text-[#0d0d0d]/70">
@@ -22,7 +102,6 @@ export default function PodcastIntro() {
             </p>
           </div>
 
-          {/* Bouton top right */}
           <div className="hidden lg:block pt-2">
             <a
               href="https://www.linkedin.com/in/a-coeurs-ouverts"
@@ -36,9 +115,9 @@ export default function PodcastIntro() {
         {/* Ligne 2 : Offres | Photos | Plateformes */}
         <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-[320px_1fr_220px] lg:items-start">
 
-          {/* Colonne gauche — Offres */}
+          {/* Colonne gauche - Offres (pas animée, secondaire) */}
           <div>
-            <h3 className="text-2xl font-black tracking-tight text-[#0f0f0f]">
+            <h3 className="text-2xl font-black tracking-tight brand-gradient-text">
               Les offres de ACO's
             </h3>
             <ul className="mt-5 space-y-4">
@@ -51,18 +130,17 @@ export default function PodcastIntro() {
             </ul>
           </div>
 
-          {/* Colonne centre — Grille de photos */}
-          <div className="flex flex-col gap-3">
-            {/* Rangée du haut : 2 photos côte à côte */}
+          {/* Colonne centre - Grille de photos */}
+          <div ref={photosRef} className="flex flex-col gap-3">
             <div className="grid grid-cols-2 gap-3">
-              <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-[#1a1a1a]">
+              <div className="photo-item aspect-[4/3] overflow-hidden rounded-2xl bg-[#1a1a1a]" style={{ opacity: 0 }}>
                 <img
                   src="/assets/episode-thumb-1.jpg"
                   alt="Episode invité 1"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-[#2a1a0a]">
+              <div className="photo-item aspect-[4/3] overflow-hidden rounded-2xl bg-[#2a1a0a]" style={{ opacity: 0 }}>
                 <img
                   src="/assets/episode-thumb-2.jpg"
                   alt="Episode invité 2"
@@ -70,8 +148,7 @@ export default function PodcastIntro() {
                 />
               </div>
             </div>
-            {/* Grande photo en bas */}
-            <div className="aspect-[16/10] overflow-hidden rounded-2xl bg-[#1a0a0a]">
+            <div className="photo-item aspect-[16/10] overflow-hidden rounded-2xl bg-[#1a0a0a]" style={{ opacity: 0 }}>
               <img
                 src="/assets/episode-thumb-3.jpg"
                 alt="Cynthia ELIEZER"
@@ -80,12 +157,12 @@ export default function PodcastIntro() {
             </div>
           </div>
 
-          {/* Colonne droite — Plateformes */}
-          <div className="flex flex-col gap-3 pt-2">
-            {/* LinkedIn */}
+          {/* Colonne droite - Plateformes */}
+          <div ref={platformRef} className="flex flex-col gap-3 pt-2">
             <a
               href="#"
               className="flex items-center gap-3 rounded-2xl bg-[#F0EDE6] px-4 py-4 transition hover:bg-[#e8e4dc]"
+              style={{ opacity: 0 }}
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0A66C2]">
                 <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -95,10 +172,10 @@ export default function PodcastIntro() {
               <span className="font-semibold text-[#0f0f0f]">Linkedin</span>
             </a>
 
-            {/* YouTube */}
             <a
               href="#"
               className="flex items-center gap-3 rounded-2xl bg-[#F0EDE6] px-4 py-4 transition hover:bg-[#e8e4dc]"
+              style={{ opacity: 0 }}
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#FF0000]">
                 <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">

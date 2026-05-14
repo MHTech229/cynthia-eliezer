@@ -1,6 +1,63 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Footer() {
+  const footerRef  = useRef<HTMLElement>(null);
+  const iconsRef   = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!footerRef.current || !iconsRef.current) return;
+
+    // Fade in du footer entier
+    gsap.fromTo(
+      footerRef.current,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 95%",
+          once: true,
+        },
+      }
+    );
+
+    // Stagger léger sur les icônes sociales
+    const icons = iconsRef.current.querySelectorAll("a");
+    gsap.fromTo(
+      icons,
+      { opacity: 0, y: 10 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out",
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: iconsRef.current,
+          start: "top 95%",
+          once: true,
+        },
+      }
+    );
+
+    return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
+  }, []);
+
   return (
-    <footer className="px-6 py-6">
+    <footer
+      ref={footerRef}
+      className="px-6 py-6"
+      style={{ opacity: 0 }}
+    >
       <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-6 md:flex-row md:items-center md:justify-between">
 
         {/* Logo */}
@@ -19,8 +76,7 @@ export default function Footer() {
         </div>
 
         {/* Icônes sociales */}
-        <div className="flex items-center gap-3">
-          {/* LinkedIn */}
+        <div ref={iconsRef} className="flex items-center gap-3">
           <a
             href="#"
             aria-label="LinkedIn"
@@ -32,7 +88,6 @@ export default function Footer() {
             </svg>
           </a>
 
-          {/* Instagram */}
           <a
             href="#"
             aria-label="Instagram"
@@ -44,7 +99,6 @@ export default function Footer() {
             </svg>
           </a>
 
-          {/* Facebook */}
           <a
             href="#"
             aria-label="Facebook"
@@ -56,7 +110,6 @@ export default function Footer() {
             </svg>
           </a>
 
-          {/* Email */}
           <a
             href="mailto:contact@cynthiaeliezer.com"
             aria-label="Email"

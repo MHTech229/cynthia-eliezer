@@ -1,3 +1,6 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
 const REFERENCES = [
   {
     name: "FRÉDÉRIC WILLIAM KINGUE 👑",
@@ -46,11 +49,42 @@ const REFERENCES = [
   },
 ];
 
-// Orange beam positions as % of total width — matching Figma gaps between cards
-// Beams sit at the junction between card 0-1, 1-2, 2-3, 3-4
 const BEAM_POSITIONS = ["20%", "40%", "60%", "80%"];
 
 export default function References() {
+  const beamsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    beamsRef.current.forEach((beam, i) => {
+      if (!beam) return;
+
+      gsap.to(beam, {
+        boxShadow:
+          "0 0 10px 4px rgba(240,106,15,0.9), 0 0 30px 10px rgba(240,106,15,0.45), 0 0 60px 20px rgba(240,106,15,0.15)",
+        duration: 1.6,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: i * 0.4,
+      });
+
+      gsap.to(beam, {
+        opacity: 0.6,
+        duration: 1.6,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: i * 0.4,
+      });
+    });
+
+    return () => {
+      beamsRef.current.forEach((beam) => {
+        if (beam) gsap.killTweensOf(beam);
+      });
+    };
+  }, []);
+
   return (
     <section
       id="references"
@@ -63,7 +97,6 @@ export default function References() {
       className="flex flex-col justify-center items-center"
     >
       <div style={{ maxWidth: "1400px", margin: "0 auto", paddingLeft: "24px", paddingRight: "24px" }}>
-        {/* Header */}
         <div className="lg:mb-12 mb-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", textAlign: "center" }}>
           <p className="brand-gradient-text" style={{
             fontFamily: "Inter, sans-serif",
@@ -104,7 +137,7 @@ export default function References() {
         </div>
       </div>
 
-      {/* ── Cards panoramic strip ── */}
+      {/* - Cards panoramic strip - */}
       <div
         className="refs-desktop md:flex justify-center items-center hidden w-5/6"
         style={{
@@ -115,7 +148,6 @@ export default function References() {
           overflow: "hidden",
         }}
       >
-        {/* Cards */}
         {REFERENCES.map((r, i) => (
           <div
             key={r.name}
@@ -125,7 +157,6 @@ export default function References() {
               minWidth: 0,
               height: `${r.height}px`,
               marginTop: `${r.marginTop}px`,
-              /* No border-radius on sides that touch other cards — only outer edges */
               borderRadius: i === 0
                 ? "0px 0 0 0px"
                 : i === REFERENCES.length - 1
@@ -135,7 +166,6 @@ export default function References() {
               zIndex: i === 2 ? 10 : i === 1 || i === 3 ? 5 : 1,
             }}
           >
-            {/* Photo + dark overlay */}
             <div style={{
               position: "absolute",
               inset: 0,
@@ -155,7 +185,6 @@ export default function References() {
                 }}
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               />
-              {/* Per-card gradient overlay from Figma */}
               <div style={{
                 position: "absolute",
                 inset: 0,
@@ -171,7 +200,6 @@ export default function References() {
               }} />
             </div>
 
-            {/* Name + role */}
             <div style={{
               position: "absolute",
               bottom: 0,
@@ -209,14 +237,11 @@ export default function References() {
           </div>
         ))}
 
-        {/* ── Orange light beam dividers ──
-            These are absolutely positioned on top of ALL cards,
-            matching the Figma Rectangle 520/523/524 elements.
-            Each beam = a thin 1px orange line with a soft glow halo,
-            spanning the full height of the strip, on top of everything. */}
+        {/* - Faisceaux animés - */}
         {BEAM_POSITIONS.map((left, i) => (
           <div
             key={i}
+            ref={(el) => { beamsRef.current[i] = el; }}
             style={{
               position: "absolute",
               top: 0,
@@ -224,9 +249,7 @@ export default function References() {
               left,
               width: "1px",
               zIndex: 40,
-              /* Core orange line */
               background: "#e85d04",
-              /* Glow halo via box-shadow spread */
               boxShadow: "0 0 12px 3px rgba(240,106,15,0.55), 0 0 32px 8px rgba(240,106,15,0.25)",
               pointerEvents: "none",
             }}
@@ -234,7 +257,7 @@ export default function References() {
         ))}
       </div>
 
-      {/* ── Mobile grid ── */}
+      {/* - Mobile grid - */}
       <div
         className="refs-mobile flex md:hidden w-full h-auto"
         style={{

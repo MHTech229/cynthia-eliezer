@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type T = {
   name: string;
@@ -18,54 +22,119 @@ const TESTIMONIALS: T[] = [
   {
     name: "Laurent SAADI",
     role: "Directeur Général – COO – Directeur des opérations & transformation",
-    roleShort: "Experte en prise de parole · Directeur Général – COO",
+    roleShort: "Directeur Général – COO",
     avatar: "/assets/testimonial-laurent.jpg",
     stars: 5,
     cardText:
-      "Je tiens à te dire mon admiration pour ton travail. Dans un monde de l'entreprise souvent pollué par des faux-semblants, tu offres un espace de vérité aux leaders. C'est une mission d'utilité publique. C'est là que nos visions se rejoignent : la rigueur et la structure ne sont que des outils au service de cette authenticité, pour qu'elle puisse s'exprimer avec force et durabilité.",
+      "Dans un monde de l'entreprise souvent pollué par des faux-semblants, tu offres un espace de vérité aux leaders. C'est une mission d'utilité publique...",
     featuredTitle:
-      "Dans un monde de l'entreprise souvent pollué par des faux-semblants, tu offres un espace de vérité aux leaders. C'est une mission d'utilité publique.",
+      "Tu offres un espace de vérité aux leaders. C'est une mission d'utilité publique.",
     fullQuote:
       "Je tiens à te dire mon admiration pour ton travail. Dans un monde de l'entreprise souvent pollué par des faux-semblants, tu offres un espace de vérité aux leaders. C'est une mission d'utilité publique. C'est là que nos visions se rejoignent : la rigueur et la structure ne sont que des outils au service de cette authenticité, pour qu'elle puisse s'exprimer avec force et durabilité.",
   },
   {
-    name: "Jean-Marc Dibango",
-    role: "Directeur Commercial",
-    roleShort: "Directeur Commercial",
-    avatar: "/assets/testimonial-jeanmarc.jpg",
+    name: "Léticia G. KADINZA",
+    role: "Médiatrice des talents appliquée · Co-fondatrice",
+    roleShort: "Co-fondatrice · Médiatrice des talents",
+    avatar: "/assets/testimonial-leticia.jpg",
     stars: 5,
     cardText:
-      "Une méthode claire et applicable. J'ai doublé mes vues et reçu 12 propositions de poste en 3 mois. Le travail de fond sur ma posture éditoriale a tout changé.",
+      "Cynthia Dixon est une femme incroyable, dotée d'un pouvoir relationnel indescriptible. Notre collaboration a débouché sur une relation vraiment transformée...",
     featuredTitle:
-      "Une méthode claire et applicable. J'ai doublé mes vues et reçu 12 propositions de poste en 3 mois.",
+      "Participer à son Podcast m'a permis de me découvrir en profondeur et de me recentrer.",
     fullQuote:
-      "William m'a aidé à reprendre confiance et à mettre en valeur mes compétences. Aujourd'hui, je reçois des propositions de poste chaque semaine sans même les solliciter.",
+      "Cynthia Dixon, 'Cyn' est une femme incroyable, dotée d'un pouvoir relationnel indescriptible. Notre collaboration a débouché sur LinkedIn et j'ai rapidement transformé en une belle relation professionnelle. Participer à son Podcast 'À Cœurs Ouverts' a été une expérience enrichissante qui m'a permis non seulement de me découvrir en profondeur, de me recentrer sur ma personnalité, mes valeurs professionnelles qui sont talent pour coller des gens avec des formations et des idées.",
   },
   {
-    name: "Sophie Tchamba",
-    role: "Consultante RH",
-    roleShort: "Consultante RH",
-    avatar: "/assets/testimonial-sophie.jpg",
+    name: "Dorian Soler",
+    role: "Conférencier TEDx · Auteur 'Osons les difficultés'",
+    roleShort: "Conférencier TEDx · Auteur",
+    avatar: "/assets/testimonial-dorian.jpg",
     stars: 5,
     cardText:
-      "Cynthia m'a redonné confiance et clarté. Son contenu inspire toute une génération de pros. Je recommande sans hésiter à quiconque veut prendre sa place sur LinkedIn.",
+      "Un grand merci à Cynthia pour son podcast dans lequel j'ai eu la chance d'intervenir. Un podcast où l'authenticité et le partage à cœur ouvert sont roi...",
     featuredTitle:
-      "Cynthia m'a redonné confiance et clarté. Son contenu inspire toute une génération de professionnels.",
+      "Un podcast où l'authenticité et le partage à cœur ouvert sont roi. Magnifique.",
     fullQuote:
-      "Ce qui distingue Cynthia, c'est sa capacité à voir le potentiel que tu n'oses pas exprimer. Mon profil est devenu mon meilleur commercial.",
+      "Un grand merci à Cynthia pour son podcast dans lequel j'ai eu la chance d'intervenir. Un podcast où l'authenticité et le partage à cœur ouvert sont roi. Continue de faire ce que tu fais, c'est magnifique.",
   },
   {
-    name: "Karim Adebayo",
-    role: "Founder, AfricaTalent",
-    roleShort: "Founder, AfricaTalent",
-    avatar: "/assets/testimonial-karim.jpg",
+    name: "Rachidath BOURAIMA",
+    role: "Coach en expression orale & développement du leadership",
+    roleShort: "Coach en expression orale",
+    avatar: "/assets/testimonial-rachidath.jpg",
     stars: 5,
     cardText:
-      "Le meilleur investissement de l'année. Sa stratégie LinkedIn m'a permis de lever des fonds et de trouver des partenaires stratégiques en un temps record.",
+      "Je pense que les entreprises n'ont pas toutes conscience à quel point avoir des leaders de leur trou d'eau et d'influence. En tout cas, Cynthia fait partie...",
     featuredTitle:
-      "Le meilleur investissement de l'année. Sa stratégie m'a permis de lever des fonds.",
+      "Un espace où l'on se sent libre de tout partager, sans filtre, sans masque, sans peur.",
     fullQuote:
-      "Grâce à la stratégie éditoriale, j'ai construit une audience qualifiée d'investisseurs. Trois mois plus tard, je bouclais ma première levée de fonds.",
+      "Je pense que les entreprises n'ont pas toutes conscience à quel point avoir des leaders de leur trou d'eau et d'influence. Éric et pourtant aucune personne en face de toi peut complètement transformer la qualité de ce que tu partages. C'est ce que j'ai vécu avec Cynthia autour de son podcast 'À Cœur ouvert'. Une expérience exceptionnelle. L'échange était fluide, humain et sincère. Les retours ont été élogieux, et cela en dit long sur la qualité de l'espace qu'elle crée. Un espace où tu te sens vraiment écouté. Un espace où tu peux déposer même les choses sans filtre, sans honte, sans masque. Son écoute est rare. Présente. Fine. Intelligente. Elle ne cherche pas à briller, elle fait la lumière sur toi. Elle m'a réconciliée avec ma présence et ma façon de me percevoir. Cette expérience m'a fait du bien. Elle m'a reconnectée à mon message, à mon parcours, à l'essentiel.",
+  },
+  {
+    name: "Jean-Marc COLOMBERO",
+    role: "Formateur Défense · Expert en management et leadership",
+    roleShort: "Formateur Défense · Expert management",
+    avatar: "/assets/testimonial-jean-marc.jpg",
+    stars: 5,
+    cardText:
+      "J'ai passé un très bon moment avec Cynthia, aussi bien pendant la préparation que pendant l'enregistrement du podcast. Un investissement intellectuel et...",
+    featuredTitle:
+      "Un investissement intellectuel et personnel d'enrichir la compréhension de mon sujet.",
+    fullQuote:
+      "J'ai passé un très bon moment avec Cynthia, aussi bien pendant la préparation que pendant l'enregistrement du podcast. Un investissement intellectuel et personnel d'enrichir la compréhension de mon sujet et la nécessité de me rendre recommandations.",
+  },
+  {
+    name: "Katia Énergétique",
+    role: "Coach Holistique · Experte en bien-être et transformation",
+    roleShort: "Coach Holistique · Transformation",
+    avatar: "/assets/testimonial-katia.jpg",
+    stars: 5,
+    cardText:
+      "Cynthia a un talent rare : créer un espace à la fois absurde, fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive...",
+    featuredTitle:
+      "Elle pose des questions justes, pertinentes, qui aident à aller bien plus loin.",
+    fullQuote:
+      "J'ai eu le plaisir de participer au podcast de Cynthia et je tiens à souligner la qualité de son travail. Cynthia a un talent rare : créer un espace à la fois absurde, fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive. Elle pose des questions justes, pertinentes, qui aident à aller bien plus loin que ce qu'on imaginait partager. Elle est un véritable intelligence émotionnelle, bienveillante, mais aussi grande maîtrise du sujet. Elle crée un sentiment de confiance qui permet la prise de parole, du plus intime et de faire émerger des échanges authentiques, sans artifice. Je recommande Cynthia sans hésitation à toute personne qui souhaite vivre une expérience de podcast humaine, qualitative et profondément enrichissante professionnellement.",
+  },
+  {
+    name: "Aurélien Danchin",
+    role: "Musicien · Créateur de contenu",
+    roleShort: "Musicien · Créateur de contenu",
+    avatar: "/assets/testimonial-aurelien.jpg",
+    stars: 5,
+    cardText:
+      "J'ai eu la chance d'être invité sur le podcast de Cynthia et je peux dire que c'est un super moment. Elle a su me mettre à l'aise et me laisser l'espace...",
+    featuredTitle:
+      "Elle a su me mettre à l'aise et me laisser l'espace pour me livrer pleinement.",
+    fullQuote:
+      "J'ai eu la chance d'être invité sur le podcast de Cynthia et je peux dire que c'est un super moment. Elle a su me mettre à l'aise et me laisser l'espace pour me livrer pleinement à mon récit. Je la recommande vivement !",
+  },
+  {
+    name: "Frédéric William KINGUE",
+    role: "Top 100 Leaders & Entrepreneurs Afrique Francophone · Coach Emploi & Management",
+    roleShort: "Top 100 Leaders Afrique · Coach Emploi",
+    avatar: "/assets/testimonial-frederic.jpg",
+    stars: 5,
+    cardText:
+      "Échanger avec Cynthia sur son podcast a été un vrai moment de vérité. Une parole posée. Une vision lucide. De la bienveillance qui fait du bien...",
+    featuredTitle:
+      "Un épisode riche, sain, et profondément humain. Merci pour cet échange.",
+    fullQuote:
+      "Échanger avec Cynthia sur son podcast a été un vrai moment de vérité. Une parole posée. Une vision lucide. De la bienveillance qui fait du bien. Merci pour cet échange riche, sain, et profondément humain. Si vous ne connaissez pas encore À Cœurs Ouverts 🎙️❤️, je vous recommande vivement de suivre Cynthia et de découvrir des parcours qui touchent le fond de la richesse en chaque personne.",
+  },
+  {
+    name: "Feriel Bahri",
+    role: "Podcast en préparation · Femmes & Entrepreneuriat · Des Modèles Parfaits",
+    roleShort: "Podcaster · Femmes & Entrepreneuriat",
+    avatar: "/assets/testimonial-feriel.jpg",
+    stars: 5,
+    cardText:
+      "J'ai eu le plaisir de participer au podcast de Cynthia et je tiens à souligner la qualité de son travail et de sa bienveillance à notre égard...",
+    featuredTitle:
+      "Elle a un talent rare pour créer un espace fluide, profondément humain et sincère.",
+    fullQuote:
+      "J'ai eu le plaisir de participer au podcast de Cynthia et je tiens à souligner la qualité de son travail. Cynthia a un talent rare : créer un espace à la fois fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive. Elle pose des questions justes, pertinentes, qui aident à aller bien plus loin que ce qu'on imaginait partager. Elle est dotée d'une véritable intelligence émotionnelle, bienveillante, mais aussi grande maîtresse du sujet. Elle crée un sentiment de confiance qui permet la prise de parole la plus intime et de faire émerger des échanges authentiques, sans artifice. Je recommande Cynthia sans hésitation à toute personne qui souhaite vivre une expérience de podcast humaine, qualitative et profondément enrichissante personnellement et professionnellement.",
   },
 ];
 
@@ -92,9 +161,63 @@ export default function Testimonials() {
   const next = () => setActive((p) => (p + 1) % total);
   const prev = () => setActive((p) => (p - 1 + total) % total);
 
+  // Refs pour les animations scroll
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsColRef = useRef<HTMLDivElement>(null);
+  const quoteColRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      // Header : fade + slide up
+      gsap.from(headerRef.current, {
+        opacity: 0,
+        y: 28,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 88%",
+          once: true,
+        },
+      });
+
+      // Colonne gauche (cards) : fade + slide depuis la gauche
+      gsap.from(cardsColRef.current, {
+        opacity: 0,
+        x: -36,
+        duration: 0.85,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: cardsColRef.current,
+          start: "top 85%",
+          once: true,
+        },
+      });
+
+      // Colonne droite (quote) : fade + slide depuis la droite
+      gsap.from(quoteColRef.current, {
+        opacity: 0,
+        x: 36,
+        duration: 0.85,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: quoteColRef.current,
+          start: "top 85%",
+          once: true,
+        },
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="testimonials"
+      ref={sectionRef}
       style={{
         position: "relative",
         overflow: "hidden",
@@ -108,9 +231,9 @@ export default function Testimonials() {
 
       <div className="lg:w-5/6 w-full" style={{ margin: "0 auto", position: "relative" }}>
 
-        {/* ── Header ── */}
-        <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <span  className="brand-gradient-text" style={{
+        {/* - Header - */}
+        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "32px" }}>
+          <span className="brand-gradient-text" style={{
             display: "inline-block",
             fontFamily: "Inter, sans-serif",
             fontSize: "11px",
@@ -131,9 +254,9 @@ export default function Testimonials() {
             lineHeight: 1.0,
             letterSpacing: "-0.04em",
             margin: 0,
-            color: "black"
+            color: "black",
           }}>
-            <span className="brand-gradient-text px-2" style={{ fontStyle: "italic" }}> Ils{" "} ont franchis</span>
+            <span className="brand-gradient-text px-2" style={{ fontStyle: "italic" }}> Ils{" "}ont franchis</span>
             <br />
             <span style={{ fontStyle: "italic" }}>le cap.</span>
             {" "}
@@ -151,16 +274,16 @@ export default function Testimonials() {
             }}>✦</span>
           </h2>
         </div>
-        {/* ── Body grid ── */}
+
+        {/* - Body grid - */}
         <div
           className="testi-grid"
           style={{ display: "grid", gridTemplateColumns: "5fr 7fr", gap: "64px", alignItems: "center" }}
         >
 
-          {/* ── LEFT: stacked cards + side arrows ── */}
-          <div style={{ position: "relative" }}>
-            {/* Card stack */}
-            <div className="flex justify-center items-center h-[400px] lg:h-[250px] sm:h-[450px] md:h-[300px]" style={{ position: "relative"}}>
+          {/* - LEFT: stacked cards + side arrows - */}
+          <div ref={cardsColRef} style={{ position: "relative" }}>
+            <div className="flex justify-center items-center h-[400px] lg:h-[250px] sm:h-[450px] md:h-[300px]" style={{ position: "relative" }}>
               {TESTIMONIALS.map((t, i) => {
                 const offset = (i - active + total) % total;
                 const isActive = offset === 0;
@@ -174,7 +297,7 @@ export default function Testimonials() {
                     style={{
                       position: "absolute",
                       left: 0,
-                      right: "48px",        /* leave room for arrows on the right */
+                      right: "48px",
                       top: `${offset * 28}px`,
                       transform: `scale(${1 - offset * 0.045})`,
                       transformOrigin: "top center",
@@ -182,7 +305,6 @@ export default function Testimonials() {
                       opacity: isVisible ? 1 : 0,
                       pointerEvents: isVisible ? "auto" : "none",
                       transition: "all 0.45s cubic-bezier(0.4,0,0.2,1)",
-                      /* Card styles */
                       background: isActive
                         ? "linear-gradient(145deg, #ffffff 60%, #fff7f0 100%)"
                         : "rgba(255,255,255,0.75)",
@@ -200,7 +322,6 @@ export default function Testimonials() {
                     }}
                     className="md:w-auto w-full"
                   >
-                    {/* Avatar + name row */}
                     <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
                       <div style={{
                         width: "46px", height: "46px", borderRadius: "50%", flexShrink: 0,
@@ -225,19 +346,17 @@ export default function Testimonials() {
                       </div>
                     </div>
 
-                    {/* Quote text */}
                     <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", lineHeight: 1.75, color: "rgba(15,27,61,0.80)", margin: "0 0 16px" }}>
                       {t.cardText}
                     </p>
 
-                    {/* Stars */}
                     <Stars count={t.stars} />
                   </button>
                 );
               })}
             </div>
 
-            {/* Side arrows — vertically centered on the stack */}
+            {/* Side arrows */}
             <div className="md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:flex md:flex-col gap-[10px] md:z-40 relative top-auto translate-y-0 flex justify-center items-center">
               <button
                 onClick={prev}
@@ -275,9 +394,8 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* ── RIGHT: featured quote ── */}
-          <div style={{ paddingLeft: "8px" }}>
-            {/* Big bold title */}
+          {/* - RIGHT: featured quote - */}
+          <div ref={quoteColRef} style={{ paddingLeft: "8px" }}>
             <h3 style={{
               fontFamily: "Inter, sans-serif",
               fontSize: "clamp(16px, 2vw, 20px)",
@@ -291,9 +409,7 @@ export default function Testimonials() {
               {current.featuredTitle}
             </h3>
 
-            {/* Quote block */}
             <div style={{ position: "relative", paddingLeft: "44px", marginBottom: "40px" }}>
-              {/* Opening guillemet */}
               <span style={{
                 position: "absolute",
                 left: 0, top: "-6px",
@@ -315,7 +431,6 @@ export default function Testimonials() {
                 margin: 0,
               }}>
                 {current.fullQuote}
-                {/* Closing guillemet */}
                 <span style={{
                   fontFamily: "Georgia, 'Times New Roman', serif",
                   fontSize: "36px",
@@ -329,7 +444,6 @@ export default function Testimonials() {
               </p>
             </div>
 
-            {/* Signature label */}
             <p style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
               fontSize: "19px",
@@ -341,7 +455,6 @@ export default function Testimonials() {
               Signature
             </p>
 
-            {/* Avatar + name */}
             <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "40px" }}>
               <div style={{
                 width: "60px", height: "60px", borderRadius: "50%", flexShrink: 0,
@@ -353,12 +466,10 @@ export default function Testimonials() {
                   src={current.avatar}
                   alt={current.name}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
               </div>
               <div>
                 <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 700, color: "#0d0d0d", margin: 0 }}>
-                  {/* Last word in orange */}
                   {current.name.split(" ").slice(0, -1).join(" ")}{" "}
                   <span style={{ color: "#e85d04" }}>{current.name.split(" ").slice(-1)[0]}</span>
                 </p>
@@ -368,7 +479,6 @@ export default function Testimonials() {
               </div>
             </div>
 
-            {/* Progress bar */}
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <span style={{ fontFamily: "Inter, sans-serif", fontSize: "20px", fontWeight: 900, color: "#0d0d0d", minWidth: "28px" }}>
                 {String(active + 1).padStart(2, "0")}

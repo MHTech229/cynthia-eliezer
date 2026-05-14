@@ -1,0 +1,64 @@
+{
+  "name": "ACO'S - À Cœurs Ouverts",
+  "short_name": "ACO'S",
+  "description": "Le podcast qui révèle l'humain derrière le leader. Des interviews authentiques par Cynthia ELIEZER.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#f06a0f",
+  "lang": "fr",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "label": "ACO'S - À Cœurs Ouverts"
+    }
+  ],
+  "categories": ["entertainment", "education", "business"],
+  "shortcuts": [
+    {
+      "name": "Écouter le podcast",
+      "short_name": "Podcast",
+      "description": "Accéder directement aux épisodes",
+      "url": "/#episodes",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "Nous contacter",
+      "short_name": "Contact",
+      "description": "Écrire à Cynthia en message privé",
+      "url": "/#contact",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    }
+  ]
+}

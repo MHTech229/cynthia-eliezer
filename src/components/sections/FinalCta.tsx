@@ -17,7 +17,7 @@ export default function FinalCta() {
             </a>
           </div>
           <div className="relative h-[320px] w-full sm:h-[420px]">
-            <div className="absolute left-4 top-0 w-44 rotate-[-6deg] rounded-2xl bg-white/15 p-3 backdrop-blur sm:w-52">
+            <div className="absolute left-4 top-0 w-44 rotate-[-6deg] rounded-2xl bg-white/15 p-3 backdrop-blur sm:w-52  sm:block hidden">
               <div className="aspect-square rounded-xl h-72 w-full overflow-hidden bg-gradient-to-br from-white/30 to-white/5" >
                 <img src="/assets/cta-1.jpg" alt="" />
               </div>
@@ -28,7 +28,7 @@ export default function FinalCta() {
                 <img className="w-full" src="/assets/cynthia-hero.png" alt="" />
               </div>
             </div>
-            <div className="absolute right-4 top-24 w-44 rotate-[6deg] rounded-2xl bg-white/15 p-3 backdrop-blur sm:w-52">
+            <div className="absolute right-4 top-24 w-44 rotate-[6deg] rounded-2xl bg-white/15 p-3 backdrop-blur sm:w-52 sm:block hidden">
               <div className="aspect-square rounded-xl h-72 w-full overflow-hidden bg-gradient-to-br from-white/30 to-white/5" >
                 <img src="/assets/cta-2.jpg" alt="" />
               </div>
