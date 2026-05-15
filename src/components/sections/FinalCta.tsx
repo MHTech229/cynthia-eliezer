@@ -10,10 +10,10 @@ export default function FinalCta() {
             <p className="mt-6 font-poppins text-xl text-white sm:text-2xl lg:text-3xl">
               Et si c'était votre tour ?<br />
               Vous aussi vous portez une histoire qui mérite d'être entendue.<br />
-              ACO'S vous ouvre ses portes.
+              ACO'S vous ouvre ses portes. Proposez votre histoire 👇
             </p>
-            <a href="#" className="mt-8 inline-flex w-fit rounded-lg bg-white px-6 py-4 font-poppins text-lg font-bold tracking-tight">
-              <span className="brand-gradient-text">Écris-moi en message privé</span>
+            <a href="https://www.linkedin.com/in/a-coeurs-ouverts/" target="_blank" className="mt-8 inline-flex w-fit rounded-lg bg-white px-6 py-4 font-poppins text-lg font-bold tracking-tight">
+              <span className="brand-gradient-text">Réservez votre interview</span>
             </a>
           </div>
           <div className="relative h-[320px] w-full sm:h-[420px]">

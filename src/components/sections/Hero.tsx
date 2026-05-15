@@ -116,7 +116,7 @@ export default function Hero() {
               className="sm:w-fit w-full inline-flex items-center gap-1 rounded-xl !bg-white px-7 py-4 text-base font-semibold transition hover:scale-[1.02] hover:shadow-lg"
             >
               <span className="brand-gradient-text">
-                Ecris moi en{" "}message privé
+                Proposez votre Histoire
               </span>
             </a>
           </div>

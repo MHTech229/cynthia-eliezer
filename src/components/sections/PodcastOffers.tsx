@@ -41,7 +41,7 @@ function VideoCard({ src, alt, link }: { src: string; alt: string; link: string 
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e85d04]">
           <Play className="h-3.5 w-3.5 fill-white text-white" />
         </span>
-        <span className="text-sm font-semibold text-[#0f0f0f]">Explore Studios</span>
+        <span className="text-sm font-semibold text-[#0f0f0f]">Voir l'interview</span>
       </a>
     </div>
   );
@@ -51,6 +51,9 @@ export default function PodcastOffers() {
   const titleRef  = useRef<HTMLHeadingElement>(null);
   const video1Ref = useRef<HTMLDivElement>(null);
   const video2Ref = useRef<HTMLDivElement>(null);
+  const titleRef2  = useRef<HTMLHeadingElement>(null);
+  const video3Ref = useRef<HTMLDivElement>(null);
+  const video4Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -102,6 +105,53 @@ export default function PodcastOffers() {
           },
         }
       );
+      // Titre 2 - fade up
+      gsap.fromTo(
+        titleRef2.current,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+
+      // Vidéo 3 - révélation depuis la droite
+      gsap.fromTo(
+        video3Ref.current,
+        { opacity: 0, x: 24 },
+        {
+          opacity: 1, x: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: video1Ref.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+
+      // Vidéo 2 - révélation depuis la gauche
+      gsap.fromTo(
+        video4Ref.current,
+        { opacity: 0, x: -24 },
+        {
+          opacity: 1, x: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: video2Ref.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
 
     });
 
@@ -110,8 +160,47 @@ export default function PodcastOffers() {
 
   return (
     <section id="interview-feature" className="bg-[#FAF8F4] px-6 lg:py-20 py-8">
-      <div className="mx-auto max-w-[1200px]">
-
+          <div style={{ maxWidth: "1400px", margin: "0 auto", paddingLeft: "24px", paddingRight: "24px" }}>
+        <div className="lg:mb-12 mb-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", textAlign: "center" }}>
+          <p className="brand-gradient-text" style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "11px",
+            fontWeight: 700,
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            margin: 0,
+          }}>
+            Mes invitées récentes
+          </p>
+          <h2 style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "clamp(20px, 4vw, 36px)",
+            fontWeight: 900,
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em",
+            color: "#0f0f0f",
+            margin: 0,
+          }}>
+            Des invités{" "}
+            <span style={{ fontStyle: "italic", color: "#e85d04" }}>qui vous</span>
+            <br />
+            <span style={{ fontStyle: "italic" }}>inspirent.</span>{" "}
+            <span style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #1a1a1a, #e85d04)",
+              color: "#fff",
+              fontSize: "14px",
+              verticalAlign: "middle",
+            }}>◆</span>
+          </h2>
+        </div>
+      </div>
+      <div className="mx-auto max-w-[1200px] mb-16">
         <p className="text-base font-semibold italic text-[#e85d04]">
           "Je suis comme toi, moi aussi j'ai des peurs..."
         </p>
@@ -172,6 +261,78 @@ export default function PodcastOffers() {
                 <li className="flex items-start gap-2">
                   <span className="mt-0.5 text-sm">🟢</span>
                   <span>Et cette vérité essentielle : chaque personne a quelque chose de précieux à offrir</span>
+                </li>
+              </ul>
+            </EpisodeCard>
+          </div>
+
+        </div>
+      </div>
+      <div className="mx-auto max-w-[1200px]">
+        <p className="text-base font-semibold italic text-[#e85d04]">
+          "As-tu déjà eu l’impression d’être spectateur de ta propre vie ?"
+        </p>
+
+        <h2
+          ref={titleRef2}
+          style={{ opacity: 0 }}
+          className="mt-4 max-w-[720px] text-xl font-black leading-snug tracking-tight text-[#0f0f0f] sm:text-2xl"
+        >
+          Avec <span className="font-black brand-gradient-text">Rachidath BOURAIMA</span> on explore un voyage intérieur rare: 
+          <br />
+          Celui d’une femme qui a dû affronter ses propres blocages pour, un jour, accompagner d’autres femmes vers leur libération.
+        </h2>
+
+        <div className="mt-12 flex flex-col gap-5">
+
+          {/* Ligne 1 */}
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_2fr]">
+            <EpisodeCard title="La Partie 1">
+              <p>
+                Elle raconte ce moment où elle s’est vue se retenir.Où elle observait sa vie… au lieu de l’habiter.
+
+                Et cette phrase reste un électrochoc :
+                <strong> « Je suis devenue spectatrice de ma propre transformation. »</strong>
+
+                <strong>Parce que oui :</strong>
+                👉 être spectateur de soi, c’est déjà un signe.
+                Un signe que quelque chose en toi veut bouger… mais n’a pas encore reçu la permission.
+              </p>
+            </EpisodeCard>
+            <div ref={video3Ref} style={{ opacity: 0 }}>
+              <VideoCard
+                link="https://www.linkedin.com/posts/activity-7406951296802410496-ogbz"
+                src="/assets/episode-rachidath-partie1.png"
+                alt="Leadership : La Vérité - Partie 1 avec Rachidath BOURAIMA"
+              />
+            </div>
+          </div>
+
+          {/* Ligne 2 */}
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[2fr_1fr]">
+            <div ref={video4Ref} style={{ opacity: 0 }}>
+              <VideoCard
+                link="https://www.linkedin.com/posts/activity-7407313723947741184-UreZ"
+                src="/assets/episode-rachidath-partie2.png"
+                alt="Leadership : La Vérité - Partie 2 Rachidath BOURAIMA"
+              />
+            </div>
+            <EpisodeCard title="La Partie 2">
+              <p className="mb-3">
+                Avec une honnêteté rare, Rachidath raconte comment elle a appris à se reconnaître vraiment et surtout à se réconcilier avec cette part d’elle qu’elle avait mise en pause pour “rentrer dans le cadre”. Ce moment-là, c’est souvent le plus difficile :
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-sm">👉</span>
+                  <span>accepter que ta force est tranquille</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-sm">👉</span>
+                  <span>que ton impact ne dépend pas du volume</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-sm">👉</span>
+                  <span>et que tu n’as pas à devenir quelqu’un d’autre pour exister pleinement.</span>
                 </li>
               </ul>
             </EpisodeCard>

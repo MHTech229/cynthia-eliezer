@@ -111,14 +111,14 @@ export default function FinalCta() {
             >
               Et si c'était votre tour ?<br />
               Vous aussi vous portez une histoire qui mérite d'être entendue.<br />
-              ACO'S vous ouvre ses portes.
+              ACO'S vous ouvre ses portes. Proposez-votre histoire 👇
             </p>
             <a
               ref={ctaRef}
               href="#"
               className="sm:w-fit w-full inline-flex items-center gap-1 rounded-xl !bg-white px-7 py-4 text-base font-semibold transition hover:scale-[1.02] hover:shadow-lg"
             >
-              <span className="brand-gradient-text">Ecris moi en{" "}message privé</span>
+              <span className="brand-gradient-text">Réserves ton interview</span>
             </a>
           </div>
 

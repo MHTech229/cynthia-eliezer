@@ -34,16 +34,16 @@ const TESTIMONIALS: T[] = [
   },
   {
     name: "Léticia G. KADINZA",
-    role: "Médiatrice des talents appliquée · Co-fondatrice",
-    roleShort: "Co-fondatrice · Médiatrice des talents",
+    role: "Training & Communication Manager",
+    roleShort: "Training & Communication Manager",
     avatar: "/assets/testimonial-leticia.jpg",
     stars: 5,
     cardText:
-      "Cynthia Dixon est une femme incroyable, dotée d'un pouvoir relationnel indescriptible. Notre collaboration a débouché sur une relation vraiment transformée...",
+      "Cynthia Eliezer, 'Cycy' est une femme incroyable, dotée d'un pouvoir relationnel indescriptible. Notre collaboration a débuté sur LinkedIn et s'est rapidement transformée en une belle relation professionnelle ...",
     featuredTitle:
-      "Participer à son Podcast m'a permis de me découvrir en profondeur et de me recentrer.",
+      "Cynthia Eliezer, 'Cycy' est une femme incroyable, dotée d'un pouvoir relationnel indescriptible.",
     fullQuote:
-      "Cynthia Dixon, 'Cyn' est une femme incroyable, dotée d'un pouvoir relationnel indescriptible. Notre collaboration a débouché sur LinkedIn et j'ai rapidement transformé en une belle relation professionnelle. Participer à son Podcast 'À Cœurs Ouverts' a été une expérience enrichissante qui m'a permis non seulement de me découvrir en profondeur, de me recentrer sur ma personnalité, mes valeurs professionnelles qui sont talent pour coller des gens avec des formations et des idées.",
+      "Participer à son Podcast 'À Coeurs Ouverts' a été une expérience enrichissante qui m'a permis non seulement de me reconnecter à moi mais aussi de découvrir sa personnalité authentique, ses valeurs profondes et son talent pour créer des liens avec les autres. Je vous la recommande vivement à toute personne cherchant à travailler avec une collaboratrice exceptionnelle, passionnée et bienveillante."
   },
   {
     name: "Dorian Soler",
@@ -54,7 +54,7 @@ const TESTIMONIALS: T[] = [
     cardText:
       "Un grand merci à Cynthia pour son podcast dans lequel j'ai eu la chance d'intervenir. Un podcast où l'authenticité et le partage à cœur ouvert sont roi...",
     featuredTitle:
-      "Un podcast où l'authenticité et le partage à cœur ouvert sont roi. Magnifique.",
+      "Un podcast où l'authenticité et le partage à cœur ouvert sont roi.",
     fullQuote:
       "Un grand merci à Cynthia pour son podcast dans lequel j'ai eu la chance d'intervenir. Un podcast où l'authenticité et le partage à cœur ouvert sont roi. Continue de faire ce que tu fais, c'est magnifique.",
   },
@@ -65,11 +65,11 @@ const TESTIMONIALS: T[] = [
     avatar: "/assets/testimonial-rachidath.jpg",
     stars: 5,
     cardText:
-      "Je pense que les entreprises n'ont pas toutes conscience à quel point avoir des leaders de leur trou d'eau et d'influence. En tout cas, Cynthia fait partie...",
+      "On sous-estime souvent la puissance d’un bon interviewer. Et pourtant … Une bonne personne en face de toi peut complètement transformer la qualité de ce que tu partages....",
     featuredTitle:
-      "Un espace où l'on se sent libre de tout partager, sans filtre, sans masque, sans peur.",
+      "Les retours ont été élogieux, et cela en dit long sur la qualité de l’espace qu’elle crée.",
     fullQuote:
-      "Je pense que les entreprises n'ont pas toutes conscience à quel point avoir des leaders de leur trou d'eau et d'influence. Éric et pourtant aucune personne en face de toi peut complètement transformer la qualité de ce que tu partages. C'est ce que j'ai vécu avec Cynthia autour de son podcast 'À Cœur ouvert'. Une expérience exceptionnelle. L'échange était fluide, humain et sincère. Les retours ont été élogieux, et cela en dit long sur la qualité de l'espace qu'elle crée. Un espace où tu te sens vraiment écouté. Un espace où tu peux déposer même les choses sans filtre, sans honte, sans masque. Son écoute est rare. Présente. Fine. Intelligente. Elle ne cherche pas à briller, elle fait la lumière sur toi. Elle m'a réconciliée avec ma présence et ma façon de me percevoir. Cette expérience m'a fait du bien. Elle m'a reconnectée à mon message, à mon parcours, à l'essentiel.",
+      "On sous-estime souvent la puissance d’un bon interviewer. Et pourtant… Une bonne personne en face de toi peut complètement transformer la qualité de ce que tu partages. C'est ce que j'ai vécu avec Cynthia autour du podcast “À cœur ouvert”. Une expérience exceptionnelle. L’échange était fluide, humain, sincère. Et surtout… impactant. Les retours ont été élogieux, et cela en dit long sur la qualité de l’espace qu’elle crée. Un espace où tu te sens vraiment écoutée. Un espace où tu peux déposer tes mots sans filtre. Un espace où tu te surprends toi-même par la profondeur de ce que tu exprimes.",
   },
   {
     name: "Jean-Marc COLOMBERO",
@@ -78,37 +78,37 @@ const TESTIMONIALS: T[] = [
     avatar: "/assets/testimonial-jean-marc.jpg",
     stars: 5,
     cardText:
-      "J'ai passé un très bon moment avec Cynthia, aussi bien pendant la préparation que pendant l'enregistrement du podcast. Un investissement intellectuel et...",
+      "J'ai passé un très bon moment avec Cynthia, aussi bien pendant la préparation que pendant l'enregistrement du podcast. Cet investissement intellectuel m'a permis...",
     featuredTitle:
-      "Un investissement intellectuel et personnel d'enrichir la compréhension de mon sujet.",
+      "J'ai passé un très bon moment avec Cynthia, aussi bien pendant la préparation que pendant l'enregistrement du podcast.",
     fullQuote:
-      "J'ai passé un très bon moment avec Cynthia, aussi bien pendant la préparation que pendant l'enregistrement du podcast. Un investissement intellectuel et personnel d'enrichir la compréhension de mon sujet et la nécessité de me rendre recommandations.",
+      "J'ai passé un très bon moment avec Cynthia, aussi bien pendant la préparation que pendant l'enregistrement du podcast. Cet investissement intellectuel m'a permis d'enrichir la compréhension de mon sujet et la nécessité de me remettre perpétuellement en question... cent mille recommandations😁❤️💪"
   },
   {
     name: "Katia Énergétique",
-    role: "Coach Holistique · Experte en bien-être et transformation",
-    roleShort: "Coach Holistique · Transformation",
+    role: "Coach · Énergéticienne en individuel",
+    roleShort: "Coach · Énergéticienne en individuel",
     avatar: "/assets/testimonial-katia.jpg",
     stars: 5,
     cardText:
-      "Cynthia a un talent rare : créer un espace à la fois absurde, fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive...",
+      "Une personne exceptionnelle qui sait cerner les atouts et valeurs de ses invités. Elle mène les podcasts avec coeur, amour de l'humain et sincérité....",
     featuredTitle:
-      "Elle pose des questions justes, pertinentes, qui aident à aller bien plus loin.",
+      "Une personne exceptionnelle qui sait cerner les atouts et valeurs de ses invités.",
     fullQuote:
-      "J'ai eu le plaisir de participer au podcast de Cynthia et je tiens à souligner la qualité de son travail. Cynthia a un talent rare : créer un espace à la fois absurde, fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive. Elle pose des questions justes, pertinentes, qui aident à aller bien plus loin que ce qu'on imaginait partager. Elle est un véritable intelligence émotionnelle, bienveillante, mais aussi grande maîtrise du sujet. Elle crée un sentiment de confiance qui permet la prise de parole, du plus intime et de faire émerger des échanges authentiques, sans artifice. Je recommande Cynthia sans hésitation à toute personne qui souhaite vivre une expérience de podcast humaine, qualitative et profondément enrichissante professionnellement.",
+      "Une personne exceptionnelle qui sait cerner les atouts et valeurs de ses invités. Elle mène les podcasts avec coeur, amour de l'humain et sincérité. Un moment précieux passé en compagnie de Cynthia Eliezer. Longue vie à ton podcast 😀🙏"
   },
   {
     name: "Aurélien Danchin",
-    role: "Musicien · Créateur de contenu",
-    roleShort: "Musicien · Créateur de contenu",
+    role: "Coach de cadres | Réussir sans se renier",
+    roleShort: "Coach de cadres | Réussir sans se renier",
     avatar: "/assets/testimonial-aurelien.jpg",
     stars: 5,
     cardText:
-      "J'ai eu la chance d'être invité sur le podcast de Cynthia et je peux dire que c'est un super moment. Elle a su me mettre à l'aise et me laisser l'espace...",
+      "J’ai eu la chance d’être l’invité du podcast de Cynthia et je peux dire que ç’a été un super moment. Elle a su me mettre à l’aise et me laisser l’espace pour me livrer pleinement à son micro. Je la recommande vivement !",
     featuredTitle:
-      "Elle a su me mettre à l'aise et me laisser l'espace pour me livrer pleinement.",
+      "J’ai eu la chance d’être l’invité du podcast de Cynthia et je peux dire que ç’a été un super moment.",
     fullQuote:
-      "J'ai eu la chance d'être invité sur le podcast de Cynthia et je peux dire que c'est un super moment. Elle a su me mettre à l'aise et me laisser l'espace pour me livrer pleinement à mon récit. Je la recommande vivement !",
+      "J’ai eu la chance d’être l’invité du podcast de Cynthia et je peux dire que ç’a été un super moment. Elle a su me mettre à l’aise et me laisser l’espace pour me livrer pleinement à son micro. Je la recommande vivement !",
   },
   {
     name: "Frédéric William KINGUE",
@@ -117,24 +117,24 @@ const TESTIMONIALS: T[] = [
     avatar: "/assets/testimonial-frederic.jpg",
     stars: 5,
     cardText:
-      "Échanger avec Cynthia sur son podcast a été un vrai moment de vérité. Une parole posée. Une vision lucide. De la bienveillance qui fait du bien...",
+      "Échanger avec Cynthia sur son podcast a été un vrai moment de vérité. Une parole posée. Une vision lucide. De la bienveillance. Une authenticité qui fait du bien...",
     featuredTitle:
-      "Un épisode riche, sain, et profondément humain. Merci pour cet échange.",
+      "Échanger avec Cynthia sur son podcast a été un vrai moment de vérité.",
     fullQuote:
       "Échanger avec Cynthia sur son podcast a été un vrai moment de vérité. Une parole posée. Une vision lucide. De la bienveillance qui fait du bien. Merci pour cet échange riche, sain, et profondément humain. Si vous ne connaissez pas encore À Cœurs Ouverts 🎙️❤️, je vous recommande vivement de suivre Cynthia et de découvrir des parcours qui touchent le fond de la richesse en chaque personne.",
   },
   {
     name: "Feriel Bahri",
-    role: "Podcast en préparation · Femmes & Entrepreneuriat · Des Modèles Parfaits",
+    role: "🎙️ Podcast en préparation : Femmes x Entrepreneuriat.Pas des rôles modèles parfaits.",
     roleShort: "Podcaster · Femmes & Entrepreneuriat",
     avatar: "/assets/testimonial-feriel.jpg",
     stars: 5,
     cardText:
-      "J'ai eu le plaisir de participer au podcast de Cynthia et je tiens à souligner la qualité de son travail et de sa bienveillance à notre égard...",
+      "J’ai eu le plaisir de participer au podcast de Cynthia, et je tiens à souligner la qualité de son travail. Cynthia a ce talent rare de créer un espace à la fois sécurisant, fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive. Elle pose des questions justes, pertinentes, qui amènent naturellement à aller plus loin que les réponses convenues...",
     featuredTitle:
-      "Elle a un talent rare pour créer un espace fluide, profondément humain et sincère.",
+      "Participer à son podcast n’est pas un simple exercice d’interview, c’est une vraie rencontre, guidée avec douceur, curiosité et professionnalisme.",
     fullQuote:
-      "J'ai eu le plaisir de participer au podcast de Cynthia et je tiens à souligner la qualité de son travail. Cynthia a un talent rare : créer un espace à la fois fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive. Elle pose des questions justes, pertinentes, qui aident à aller bien plus loin que ce qu'on imaginait partager. Elle est dotée d'une véritable intelligence émotionnelle, bienveillante, mais aussi grande maîtresse du sujet. Elle crée un sentiment de confiance qui permet la prise de parole la plus intime et de faire émerger des échanges authentiques, sans artifice. Je recommande Cynthia sans hésitation à toute personne qui souhaite vivre une expérience de podcast humaine, qualitative et profondément enrichissante personnellement et professionnellement.",
+      "J’ai eu le plaisir de participer au podcast de Cynthia, et je tiens à souligner la qualité de son travail. Cynthia a ce talent rare de créer un espace à la fois sécurisant, fluide et profondément humain. Son écoute est réelle, attentive, sans jamais être intrusive. Elle pose des questions justes, pertinentes, qui amènent naturellement à aller plus loin que les réponses convenues. On sent une véritable intelligence émotionnelle, beaucoup de bienveillance, mais aussi une grande maîtrise de son sujet. Elle sait mettre en confiance, valoriser la parole de son invité et faire émerger des échanges authentiques, sans artifice."
   },
 ];
 
